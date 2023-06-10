@@ -1,0 +1,92 @@
+
+
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #202020 !important;
+}
+input[type="number"] {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #202020 !important;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.result {
+  color: #3307e1;
+  font-weight: bold;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.keypad button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.backspace-button {
+  grid-column: span 2;
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.clear-button {
+  grid-column: span 3;
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.header{
+  color: brown;
+}
+
+.profit-input {
+  margin-top: 0px;
+}
+
+.profit-input label {
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+.profit-input input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 0px;
+}
+
