@@ -4,9 +4,9 @@ import "./App.css";
 function App() {
   const [number, setNumber] = useState("");
   const [output, setOutput] = useState("");
-  const [resultWithPercentage, setResultWithPercentage] = useState("");
+  const [resultWithPercentage, setResultWithPercentage] = useState([]);
   const [error, setError] = useState("");
-  const [profitPercentage, setProfitPercentage] = useState("");
+  const profitPercentage = [30, 70];
 
   const handleBackspace = () => {
     setNumber(number.slice(0, -1));
@@ -15,11 +15,6 @@ function App() {
   const handleChange = (event) => {
     const { value } = event.target;
     setNumber(value);
-  };
-
-  const handleProfitChange = (event) => {
-    const { value } = event.target;
-    setProfitPercentage(value);
   };
 
   const handleKeypadInput = (digit) => {
@@ -31,9 +26,8 @@ function App() {
   const handleClear = () => {
     setNumber("");
     setOutput("");
-    setResultWithPercentage("");
+    setResultWithPercentage([]);
     setError("");
-    setProfitPercentage("");
   };
 
   const handleSubmit = (event) => {
@@ -42,22 +36,23 @@ function App() {
     if (parseInt(number) < 10000 || parseInt(number) > 10999) {
       setError("Invalid code.");
       setOutput("");
-      setResultWithPercentage("");
+      setResultWithPercentage([]);
     } else {
       const lastThreeDigits = number.slice(-3);
       const result = 1000 - parseInt(lastThreeDigits);
-      const profitPercent = profitPercentage
-        ? parseFloat(profitPercentage)
-        : 30;
-      const resultPercentage = result + result * (profitPercent / 100);
+
+      const resultPercentage = [
+        result + result * (profitPercentage[0] / 100),
+        result + result * (profitPercentage[1] / 100),
+      ];
       setError("");
       setOutput(result);
-      setResultWithPercentage(resultPercentage);
+      setResultWithPercentage(resultPercentage.map((num) => num.toFixed(2)));
     }
   };
 
   return (
-    <div className="container ">
+    <div className="container">
       <h1 className="header">Code Reader</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -70,15 +65,7 @@ function App() {
             placeholder="Enter Code"
           />
         </label>
-        <label>
-          <h2>Profit Percentage:</h2>
-          <input
-            type="number"
-            value={profitPercentage}
-            onChange={handleProfitChange}
-            placeholder="Enter profit percentage (30)"
-          />
-        </label>
+
         <div className="keypad">
           <button type="button" onClick={() => handleKeypadInput("1")}>
             1
@@ -125,9 +112,13 @@ function App() {
       </form>
 
       {error && <p className="error">Error: {error}</p>}
-      {output && <p className="result">Loading Price : {output}</p>}
-      {resultWithPercentage && (
-        <p className="result">Profit : {resultWithPercentage.toFixed(2)}</p>
+
+      {resultWithPercentage.length === 2 && (
+        <p className="result">
+          6060{resultWithPercentage[0]}
+          <hr />
+          6060{resultWithPercentage[1]}
+        </p>
       )}
     </div>
   );
